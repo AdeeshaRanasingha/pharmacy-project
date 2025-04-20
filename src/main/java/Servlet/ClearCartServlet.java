@@ -11,10 +11,10 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/ClearCartServlet")
 public class ClearCartServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
         HttpSession session = request.getSession();
-        session.removeAttribute("cart");  // or session.setAttribute("cart", null);
+        session.removeAttribute("cart");  // remove the session
         response.sendRedirect("cart.jsp");
     }
 }

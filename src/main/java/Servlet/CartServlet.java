@@ -26,21 +26,21 @@ public class CartServlet extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         double price = Double.parseDouble(request.getParameter("price"));
 
-        CartItem item = new CartItem(productName, quantity, price);
+        CartItem item = new CartItem(productName, quantity, price);//created the cartItem object and inisialised the values
 
         HttpSession session = request.getSession();
         
-		ArrayList<CartItem> cart = (ArrayList<CartItem>) session.getAttribute("cart");
+		ArrayList<CartItem> cart = (ArrayList<CartItem>) session.getAttribute("cart");//retriving the users cart
 
         if (cart == null) {
             cart = new ArrayList<>();
         }
 
-        cart.add(item);
-        session.setAttribute("cart", cart);
+        cart.add(item);//adds the current product (represented by the item object) to the cart list
+        session.setAttribute("cart", cart);//saves the updated cart back into the session.
 
-        // Redirect back to medicine page or a success message
-        response.sendRedirect("medicine.jsp"); // or a cart summary page
+        
+        response.sendRedirect("medicine.jsp"); 
     }
 
 }

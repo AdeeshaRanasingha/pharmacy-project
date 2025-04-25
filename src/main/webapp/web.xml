@@ -65,5 +65,15 @@
     <servlet-name>PrescriptionServlet</servlet-name>
     <url-pattern>/prescriptionServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>Servlet.RegisterServlet</servlet-class>
+  </servlet>
+  
+   <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
 
 </web-app>

@@ -8,7 +8,7 @@ public class DBConnector {
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		
-		String url = "jdbc:mysql://127.0.0.1:3306/pharmacyonline";
+		String url = "jdbc:mysql://127.0.0.1:3307/pharmacyonline";
 		String user = "root";
 		String pwd = "";
 		

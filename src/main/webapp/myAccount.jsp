@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="Model.UserModel" %>
-
+<%
+    UserModel user = (UserModel) session.getAttribute("user");
+    if (user == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +31,6 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
         }
         .save-btn {
             background-color: black;
@@ -45,7 +50,7 @@
             <h5 class="mt-3">Edit Profile</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <form action="DeleteAccountServlet" method="post">
-                <input type="hidden" name="userID" value="">
+                <input type="hidden" name="userID" value="<%= user.getUserID() %>">
                 <button type="submit" class="btn btn-danger w-100" onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</button>
             </form>
         </div>
@@ -54,43 +59,37 @@
         <div class="col-md-9">
             <div class="content-area">
 
-               
+                <% String message = (String) request.getAttribute("message"); %>
+                <% if (message != null) { %>
+                    <div class="alert alert-info"><%= message %></div>
+                <% } %>
 
                 <!-- Update Account Info -->
                 <h4>Account Information</h4>
-                
-				                <%
-				    UserModel loggedUser = (UserModel) session.getAttribute("user");
-				    if (loggedUser != null) {
-				%>
-				    <input type="hidden" name="userID" value="<%= loggedUser.getUserID() %>">
-				<% } %>
-                
-                
                 <form action="UpdateAccountServlet" method="post" class="row g-3">
-                    <input type="hidden" name="userID" value="">
+                    <input type="hidden" name="userID" value="<%= user.getUserID() %>">
 
                     <div class="col-md-6">
-                        <label class="form-label">FIrst Name</label>
-                        <input type="text" name="firstname" class="form-control" value="" required>
+                        <label class="form-label">First Name</label>
+                        <input type="text" name="firstname" class="form-control" value="<%= user.getFirstname() %>" required>
                     </div>
                     
-                     <div class="col-md-6">
+                    <div class="col-md-6">
                         <label class="form-label">Last Name</label>
-                        <input type="text" name="lastname" class="form-control" value="" required>
+                        <input type="text" name="lastname" class="form-control" value="<%= user.getLastname() %>" required>
                     </div>
 
                     <div class="col-md-6">
                         <label class="form-label">Phone Number</label>
-                        <input type="text" name="phone" class="form-control" value="" required>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <label class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" value="" required>
+                        <input type="text" name="phone" class="form-control" value="<%= user.getPhone() %>" required>
                     </div>
 
-                    
+                    <div class="col-md-6">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" value="<%= user.getEmail() %>" required>
+                    </div>
+
+
                     <div class="col-12 text-end">
                         <button type="submit" class="btn save-btn">Save Changes</button>
                     </div>
@@ -101,7 +100,7 @@
                 <!-- Change Password -->
                 <h4>Change Password</h4>
                 <form action="UpdatePasswordServlet" method="post" class="row g-3">
-                    <input type="hidden" name="userID" value="">
+                    <input type="hidden" name="userID" value="<%= user.getUserID() %>">
 
                     <div class="col-12">
                         <label class="form-label">Current Password</label>
@@ -127,7 +126,6 @@
         </div>
     </div>
 </div>
-
 <jsp:include page="footer.jsp" />
 
 </body>

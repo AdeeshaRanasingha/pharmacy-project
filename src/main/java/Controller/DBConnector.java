@@ -12,7 +12,7 @@ public class DBConnector {
 		String user = "root";
 		String pwd = "";
 		
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(url,user,pwd);
 		Statement stmt = conn.createStatement();
 		

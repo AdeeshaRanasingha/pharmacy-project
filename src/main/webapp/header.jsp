@@ -4,6 +4,7 @@
 
 <%@ page import="java.util.ArrayList" %>
             <%@ page import="Model.CartItem" %>
+            <%@ page import="Model.UserModel" %>
 
 <style>
   :root {
@@ -143,14 +144,29 @@
 </span>
           </a>
         </li>
+        <%
+            // Check if user is logged in (session check)
+            UserModel user = (UserModel) session.getAttribute("user");
+        %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <i class="fa-solid fa-user"></i> Account
+            <i class="fa-solid fa-user"></i><% if (user != null) { %>
+              <%= user.getFirstname() %>  <!-- Display the user's name -->
+            <% } else { %>
+              Account
+            <% } %>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-plus"></i> Register</a></li>
+            <% if (user != null) { %>
+              <!-- Show My Profile and Logout if logged in -->
+              <li><a class="dropdown-item" href="myAccount.jsp"><i class="fa-solid fa-user-gear"></i> My Profile</a></li>
+              <li><a class="dropdown-item" href="LogoutServlet"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            <% } else { %>
+              <!-- Show Login and Register if not logged in -->
+              <li><a class="dropdown-item" href="login.jsp"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+              <li><a class="dropdown-item" href="register.jsp"><i class="fa-solid fa-user-plus"></i> Register</a></li>
+            <% } %>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#"><i class="fa-solid fa-circle-info"></i> Help</a></li>
           </ul>

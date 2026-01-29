@@ -1,3 +1,5 @@
+<%@ page import="Model.UserModel" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pharmacy Portal Navbar</title>
 
-    <!-- Bootstrap CSS -->
+  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Font Awesome CDN -->
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -119,13 +121,27 @@
             object-fit: cover;
         }
 
-        .carousel-caption {
-            background: rgba(0, 0, 0, 0.65);
-            padding: 30px 40px;
-            border-radius: 12px;
-            text-align: left;
-            max-width: 600px;
-        }
+		.carousel-item {
+		  position: relative; /* Ensure relative positioning for the caption to be positioned */
+		}
+		
+		.carousel-caption {
+		  background: rgba(0, 0, 0, 0.35);
+		  padding: 30px 40px;
+		  border-radius: 0px;
+		  text-align: center; /* Align text to the center */
+		  max-width: 600px;
+		  position: absolute; /* Position it within the carousel item */
+		  bottom: 20px; /* Position it 20px from the bottom */
+		  left: 50%; /* Horizontally center the caption */
+		  transform: translateX(40%); /* Adjust to center it horizontally */
+		  width: 100%; /* Ensure it spans the full width */
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		  justify-content: center;
+		}
+		
 
         .carousel-caption h1 {
             font-size: 3rem;
@@ -154,23 +170,74 @@
         .carousel-caption .btn-custom:hover {
             background-color: #078acb;
         }
+        
+        .card-testimonial {
+    padding: 25px;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-testimonial .card-text {
+    font-size: 1.05rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.card-testimonial img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #0EA5E9;
+}
+
+.card-testimonial h6 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.card-testimonial small {
+    font-size: 0.95rem;
+    color: #6c757d;
+}
+        
     </style>
 </head>
 <body>
 
-<jsp:include page="header.jsp" />
+<%
+UserModel user = (UserModel) session.getAttribute("user");
 
-<!-- Hero Section -->
+    if (user != null ) {
+%>
+    <jsp:include page="header.jsp" />
+<%
+    } else {
+%>
+    <jsp:include page="unregisterHeader.jsp" />
+<%
+    }
+%>
+
+
 <div id="heroCarousel" class="carousel slide hero" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="images/img1.png" class="d-block w-100" alt="Banner 1">
-            <div class="carousel-caption d-none d-md-block">
-                <h1>Discover Trusted Health Solutions</h1>
-                <p>Shop from a wide range of genuine medications and wellness essentials at PharmaOnline.</p>
-                <a class="btn btn-custom" href="#">Browse Products</a>
-            </div>
-        </div>
+    <img src="images/img1.png" class="d-block w-100" alt="Banner 1">
+    <div class="carousel-caption d-none d-md-block">
+        <h1>Discover Trusted Health Solutions</h1>
+        <p>Shop from a wide range of genuine medications and wellness essentials at PharmaOnline.</p>
+        <a class="btn btn-custom" href="#">Browse Products</a>
+    </div>
+</div>
+
         <div class="carousel-item">
             <img src="images/img2.png" class="d-block w-100" alt="Banner 2">
             <div class="carousel-caption d-none d-md-block">
@@ -292,7 +359,7 @@
     </div>
   </section>
 
-<!-- Advertisement Banner -->
+
 <section class="py-5" style="background-color: #e0f7fa;">
     <div class="container">
       <div class="row align-items-center">
@@ -309,66 +376,78 @@
   </section>
   
   
-  <!-- User Feedback Section -->
-<section class="py-5 bg-white">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h2 class="fw-bold">What Our Customers Say</h2>
-        <p class="text-muted">Real feedback from happy customers</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body">
-              <p class="card-text">“Ordering was easy, and the delivery was super fast. PharmaOnline really impressed me!”</p>
-              <div class="d-flex align-items-center mt-4">
-                <img src="https://randomuser.me/api/portraits/men/31.jpg" class="rounded-circle me-3" width="50" height="50" alt="User 1">
-                <div>
-                  <h6 class="mb-0 fw-bold">Nuwan Perera</h6>
-                  <small class="text-muted">Colombo, Sri Lanka</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body">
-              <p class="card-text">“I found all the medicines I needed and the site is very user-friendly. Highly recommend!”</p>
-              <div class="d-flex align-items-center mt-4">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle me-3" width="50" height="50" alt="User 2">
-                <div>
-                  <h6 class="mb-0 fw-bold">Dilani Fernando</h6>
-                  <small class="text-muted">Kandy, Sri Lanka</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body">
-              <p class="card-text">“Professional service and very responsive. I appreciate the care they put into packaging.”</p>
-              <div class="d-flex align-items-center mt-4">
-                <img src="https://randomuser.me/api/portraits/men/65.jpg" class="rounded-circle me-3" width="50" height="50" alt="User 3">
-                <div>
-                  <h6 class="mb-0 fw-bold">Ravindu Silva</h6>
-                  <small class="text-muted">Galle, Sri Lanka</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Footer -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">What Our Customers Say</h2>
+      <p class="text-muted">Real feedback from happy customers</p>
+    </div>
+    <div class="row g-4">
+      
+      <div class="col-md-4">
+        <div class="card card-testimonial h-100">
+          <div class="card-body">
+            <p class="card-text">
+              “Ordering was easy, and the delivery was super fast. PharmaOnline really impressed me!”
+            </p>
+            <div class="d-flex align-items-center mt-4">
+              <img src="https://randomuser.me/api/portraits/men/31.jpg" alt="User 1" class="me-3">
+              <div>
+                <h6 class="mb-0">Nuwan Perera</h6>
+                <small>Colombo, Sri Lanka</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
+      <div class="col-md-4">
+        <div class="card card-testimonial h-100">
+          <div class="card-body">
+            <p class="card-text">
+              “I found all the medicines I needed and the site is very user-friendly. Highly recommend!”
+            </p>
+            <div class="d-flex align-items-center mt-4">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User 2" class="me-3">
+              <div>
+                <h6 class="mb-0">Dilani Fernando</h6>
+                <small>Kandy, Sri Lanka</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+   
+      <div class="col-md-4">
+        <div class="card card-testimonial h-100">
+          <div class="card-body">
+            <p class="card-text">
+              “Professional service and very responsive. I appreciate the care they put into packaging.”
+            </p>
+            <div class="d-flex align-items-center mt-4">
+              <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="User 3" class="me-3">
+              <div>
+                <h6 class="mb-0">Ravindu Silva</h6>
+                <small>Galle, Sri Lanka</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 
 
 <jsp:include page="footer.jsp" />
 
-<!-- Bootstrap JS -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

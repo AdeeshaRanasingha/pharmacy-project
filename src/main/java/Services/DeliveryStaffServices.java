@@ -79,7 +79,11 @@ public class DeliveryStaffServices {
 				 staff.setAssignedArea(rs.getString("area"));
 				 staff.setStatus(rs.getString("status"));
 				 staff.setNotes(rs.getString("notes"));
+<<<<<<< Updated upstream
 				 staff.setDate(rs.getString("date"));
+=======
+				 staff.setDate(rs.getString("created_date"));
+>>>>>>> Stashed changes
 				 
 				 staffList.add(staff);
 			 }
@@ -148,4 +152,56 @@ public void deleteData(String staffID) {
 		}
 	}
 
+<<<<<<< Updated upstream
+=======
+
+public static List<DeliveryStaffModel> getAvailableStaff() {
+    List<DeliveryStaffModel> staffList = new ArrayList<>();
+    try {
+    	Connection conn = DBConnector.getConnection();
+		Statement stmt = conn.createStatement();
+        String query = "SELECT * FROM delivery_staff WHERE status != 'Suspended'";
+        ResultSet rs = stmt.executeQuery(query);
+
+        while (rs.next()) {
+            DeliveryStaffModel staff = new DeliveryStaffModel();
+            staff.setStaffID(rs.getString("staffID"));
+            staff.setFirstname(rs.getString("firstname"));
+            staff.setLastname(rs.getString("lastname"));
+            // Add other fields as needed
+            staffList.add(staff);
+        }
+        rs.close();
+        stmt.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return staffList;
+}
+
+public static List<DeliveryStaffModel> getActiveStaff() {
+    List<DeliveryStaffModel> list = new ArrayList<>();
+    try {
+        DBConnector db = new DBConnector();
+        Statement stmt = db.getConnection().createStatement();
+        String sql = "SELECT * FROM delivery_staff WHERE status = 'Active'";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        while (rs.next()) {
+            DeliveryStaffModel staff = new DeliveryStaffModel();
+            staff.setStaffID(rs.getString("staffID"));
+            staff.setFirstname(rs.getString("firstname"));
+            staff.setLastname(rs.getString("lastname"));
+
+            list.add(staff);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return list;
+}
+
+
+
+>>>>>>> Stashed changes
 }

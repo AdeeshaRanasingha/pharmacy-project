@@ -3,8 +3,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <%@ page import="java.util.ArrayList" %>
+<<<<<<< Updated upstream
             <%@ page import="Model.CartItem" %>
             <%@ page import="Model.UserModel" %>
+=======
+<%@ page import="Model.CartItem" %>
+>>>>>>> Stashed changes
 
 <style>
   :root {
@@ -15,19 +19,19 @@
   }
 
   .navbar {
-    background: var(--nav-gradient);
+    background: #DDDDDD;
     position: sticky;
     top: 0;
     z-index: 1020;
-    padding: 0.8rem 1rem;
+    padding: 1.5rem 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .navbar-brand {
     font-weight: 800;
-    font-size: 1.5rem;
+    font-size: 2rem;
     letter-spacing: 1px;
-    color: var(--text-color);
+    color: #176B87;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -35,7 +39,7 @@
 
   .nav-link {
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--primary-color);
     margin: 0 12px;
     position: relative;
     transition: color 0.3s;
@@ -43,7 +47,7 @@
 
   .nav-link:hover,
   .nav-link.active {
-    color: #ffe600;
+    color:#2973B2;
   }
 
   .nav-link::before {
@@ -101,7 +105,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <i class="fa-solid fa-capsules"></i> PharmaOnline
+      <i class="fa-solid fa-capsules"></i> eRemedy
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -115,13 +119,16 @@
           <a class="nav-link " href="home.jsp"><i class="fa-solid fa-house"></i> Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="medicine.jsp"><i class="fa-solid fa-pills"></i> Medicines</a>
+          <a class="nav-link" href="MedicineServlet"><i class="fa-solid fa-pills"></i> Medicines</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="prescription.jsp"><i class="fa-solid fa-file-prescription"></i> Prescriptions</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="orderListServlet"><i class="fa-solid fa-truck-fast"></i> Orders</a>
+          <a class="nav-link" href="feedback.jsp"><i class="fas fa-comment-dots"></i> Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="OrderListByIDServlet"><i class="fa-solid fa-truck-fast"></i> Orders</a>
         </li>
         <li class="nav-item position-relative">
           <a class="nav-link" href="cart.jsp"><i class="fa-solid fa-cart-shopping"></i>
@@ -141,7 +148,7 @@
           <%
             }
           %>
-</span>
+			</span>
           </a>
         </li>
         <%
@@ -158,6 +165,7 @@
             <% } %>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
+<<<<<<< Updated upstream
             <% if (user != null) { %>
               <!-- Show My Profile and Logout if logged in -->
               <li><a class="dropdown-item" href="myAccount.jsp"><i class="fa-solid fa-user-gear"></i> My Profile</a></li>
@@ -167,6 +175,11 @@
               <li><a class="dropdown-item" href="login.jsp"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
               <li><a class="dropdown-item" href="register.jsp"><i class="fa-solid fa-user-plus"></i> Register</a></li>
             <% } %>
+=======
+            <li><a class="dropdown-item" href="myAccount.jsp"><i class="fa-solid fa-user-plus"></i> My Profile</a></li>
+            <li><a class="dropdown-item" href="LogoutServlet"><i class="fa-solid fa-right-to-bracket"></i> Logout</a></li>
+           
+>>>>>>> Stashed changes
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#"><i class="fa-solid fa-circle-info"></i> Help</a></li>
           </ul>

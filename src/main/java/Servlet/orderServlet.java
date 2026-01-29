@@ -40,6 +40,7 @@ public class orderServlet extends HttpServlet {
 		
 		OderModel ordModel = new OderModel();
 		
+		ordModel.setUserID(Integer.parseInt(request.getParameter("userID")));
 		ordModel.setName(request.getParameter("name"));
 		ordModel.setAddress(request.getParameter("address"));
 		ordModel.setTelephone(Integer.parseInt(request.getParameter("phone")));
@@ -71,7 +72,7 @@ public class orderServlet extends HttpServlet {
 		System.out.println("✅ Order insert triggered.");
 
 		
-		response.sendRedirect("orderListServlet");
+		response.sendRedirect("OrderListByIDServlet");
 
 	}
 

@@ -26,9 +26,20 @@ public class LoginServlet extends HttpServlet {
         UserModel user = userService.loginUser(email, password);
 
         if (user != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            response.sendRedirect("home.jsp"); // After login, redirect to home.jsp
+             // After login, redirect to home.jsp
+            
+            if(email.equals("adeeshaharshana@gmail.com")) {
+            	HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                response.sendRedirect("adminPanelServlet"); 
+            }
+            else {
+            	HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                session.setAttribute("userID", String.valueOf(user.getUserID()));
+                response.sendRedirect("home.jsp");
+                
+            }
         } else {
             request.setAttribute("error", "Invalid email or password. Please try again.");
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");

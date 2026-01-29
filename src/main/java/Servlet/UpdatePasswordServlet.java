@@ -50,7 +50,11 @@ public class UpdatePasswordServlet extends HttpServlet {
 	     boolean isUpdated = service.updatePassword(userID, currentPassword, newPassword);
 	     
 	     if (isUpdated) {
+<<<<<<< Updated upstream
 	            request.setAttribute("success", "Password updated successfully!");
+=======
+	            request.setAttribute("message", "Password updated successfully!");
+>>>>>>> Stashed changes
 	        } else {
 	            request.setAttribute("error", "Current password is incorrect.");
 	        }

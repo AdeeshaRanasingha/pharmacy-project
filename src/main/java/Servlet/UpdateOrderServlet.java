@@ -33,6 +33,7 @@ public class UpdateOrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		OderModel ordModel = new OderModel();
 		
+		
 		ordModel.setAddress(request.getParameter("address"));
 		ordModel.setTelephone(Integer.parseInt(request.getParameter("phone")));
 		ordModel.setOrderID(Integer.parseInt(request.getParameter("orderID")));
@@ -45,7 +46,7 @@ public class UpdateOrderServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect("orderListServlet");
+		response.sendRedirect("OrderListByIDServlet");
 		
 	}
 

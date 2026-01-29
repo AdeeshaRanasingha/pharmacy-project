@@ -43,7 +43,11 @@ public class DeleteAccountServlet extends HttpServlet {
 
         if (isDeleted) {
             session.invalidate(); // log the user out
+<<<<<<< Updated upstream
             response.sendRedirect("register.jsp?message=AccountDeleted");
+=======
+            response.sendRedirect("home.jsp?message=AccountDeleted");
+>>>>>>> Stashed changes
         } else {
             request.setAttribute("error", "Account deletion failed. Please try again.");
             RequestDispatcher dispatcher = request.getRequestDispatcher("myAccount.jsp");

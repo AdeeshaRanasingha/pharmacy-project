@@ -23,7 +23,7 @@
         <th>Price (Rs.)</th>
         <th>Quantity</th>
         <th>Total (Rs.)</th>
-        <th>Action</th>
+        
       </tr>
     </thead>
     <tbody>
@@ -41,12 +41,7 @@
         <td><%= item.getPrice() %></td>
         <td><%= item.getQuantity() %></td>
         <td><%= total %></td>
-        <td>
-          <form method="post" action="RemoveCartItemServlet" style="margin:0;">
-            <input type="hidden" name="index" value="<%= i %>">
-            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
-          </form>
-        </td>
+       
       </tr>
       <% 
           } 
@@ -60,7 +55,7 @@
     <% if (cart != null && !cart.isEmpty()) { %>
     <tfoot class="table-secondary">
       <tr>
-        <th colspan="4" class="text-end">Grand Total</th>
+        <th colspan="3" class="text-end">Grand Total</th>
         <th>Rs. <%= grandTotal %></th>
       </tr>
     </tfoot>

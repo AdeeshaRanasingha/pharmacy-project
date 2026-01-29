@@ -21,6 +21,8 @@ public class CartServlet extends HttpServlet {
 	@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+		
+		
 
         String productName = request.getParameter("productName");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -39,8 +41,13 @@ public class CartServlet extends HttpServlet {
         cart.add(item);//adds the current product (represented by the item object) to the cart list
         session.setAttribute("cart", cart);//saves the updated cart back into the session.
 
+<<<<<<< Updated upstream
         
         response.sendRedirect("medicine.jsp"); 
+=======
+        // Redirect back to medicine page or a success message
+        response.sendRedirect("MedicineServlet"); // or a cart summary page
+>>>>>>> Stashed changes
     }
 
 }

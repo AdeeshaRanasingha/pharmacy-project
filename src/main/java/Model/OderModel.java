@@ -15,9 +15,16 @@ public class OderModel {
 	private String address;
 	private String Status;
 	private String date;
+	private String delivery;
 	
 	
 	
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
 	public int getQuantity() {
 		return quantity;
 	}

@@ -3,6 +3,7 @@ package Servlet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,14 +27,16 @@ public class OrderListServlet extends HttpServlet {
 
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        //int userID = Integer.parseInt((String) session.getAttribute("userID"));
 
-            //HttpSession session = request.getSession();
-            //int userID = (int) session.getAttribute("userID"); // ensure this is set on login
+        List<OderModel> orders = orderServices.showData();
+        request.setAttribute("orders", orders);
 
-            List<OderModel> orders = orderServices.showData();
-            request.setAttribute("orders", orders);
-            request.getRequestDispatcher("order.jsp").forward(request, response);
-        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("orderAdmin.jsp");
+        dispatcher.forward(request, response);
+    }
+
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

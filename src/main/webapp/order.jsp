@@ -1,6 +1,16 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="Model.OderModel" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+  String userIdStr = (String) session.getAttribute("userID");
+  if (userIdStr == null) {
+      response.sendRedirect("login.jsp");
+      return;
+  }
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
